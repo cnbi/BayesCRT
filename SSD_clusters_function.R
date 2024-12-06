@@ -26,7 +26,6 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
     if (is.numeric(c(eff_size, n1, n2, ndatasets, rho, BF_thresh, eta, b_fract, max, batch_size)) == FALSE) 
         stop("All arguments, except 'fixed', must be numeric")
     if (eff_size < 0) stop("The effect size must be a positive value ")
-    if (n2 %% 2 > 0) stop("The number of clusters must be even")
     if (rho > 1) stop("The intraclass correlation must be standardized and cannot be larger than 1")
     if (rho < 0) stop("The intraclass correlation must be a positive value")
     if (eta > 1) stop("The probability of exceeding Bayes Factor threshold cannot be larger than 1")
