@@ -115,14 +115,14 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
             ifelse(prop_BF01 > eta & prop_BF10 > eta, condition_met <- TRUE, condition_met <- FALSE)
             previous_eta <- current_eta
             current_eta <- min(prop_BF10, prop_BF01)
-            print("Bayes factor check!")
+            #print("Bayes factor check!")
             
             # Binary search algorithm ------------------------------------------
             if (condition_met == FALSE) {
-                print(c("Using cluster size:", n1, "and number of clusters:", n2,
-                        "prop_BF01: ", prop_BF01, "prop_BF10: ", prop_BF10, "b:", b,
-                        "low:", low, "high:", high))
-                print("Increasing sample")
+                # print(c("Using cluster size:", n1, "and number of clusters:", n2,
+                #         "prop_BF01: ", prop_BF01, "prop_BF10: ", prop_BF10, "b:", b,
+                #         "low:", low, "high:", high))
+                # print("Increasing sample")
                 if (fixed == "n1") {
                     if ((n2 == max) | (n2 > max))    { # If the sample size reaches the maximum
                         final_SSD[[b]] <- list("n1" = n1,
@@ -196,10 +196,10 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
                 }
                 break
             } else if (condition_met == TRUE) {
-                print(c("Using cluster size:", n1,
-                        "and number of clusters:", n2,
-                        "prop_BF01: ", prop_BF01, "prop_BF10: ", prop_BF10,
-                        "low: ", low, "high: ", high, "b:", b))
+                # print(c("Using cluster size:", n1,
+                #         "and number of clusters:", n2,
+                #         "prop_BF01: ", prop_BF01, "prop_BF10: ", prop_BF10,
+                #         "low: ", low, "high: ", high, "b:", b))
                 previous_high <- high
                 SSD_object <- list("n1" = n1,
                                    "n2" = n2,
@@ -210,8 +210,8 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
                                    "data_H1" = results_H1,
                                    "singularity" = cbind(H0 = data_H0$singularity,
                                                          H1 = data_H1$singularity))
-                print("Lowerign sample")
-                print(c("previous:", previous_eta))
+                # print("Lowerign sample")
+                # print(c("previous:", previous_eta))
                 previous_eta <- current_eta
                 
                 if (fixed == "n1") {
@@ -245,7 +245,7 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
                         ifelse(n2 %% 2 == 0, n2 <- n2, n2 <- n2 + 1)
                         if (n2 < 30) warning("The number of groups is less than 30.
                                              This may cause problems in convergence and singularity.")
-                        print("Lowering") # Eliminate later
+                        #print("Lowering") # Eliminate later
                         break
                         
                     }
@@ -288,16 +288,16 @@ SSD_crt_null <- function(eff_size, n1 = 15, n2 = 30, ndatasets = 1000, rho, BF_t
                         low <- low                         #lower bound
                         high <- n1                         #higher bound
                         n1 <- round2((low + high) / 2)      #point in the middle
-                        print("Lowering") # Eliminate later
+                        #print("Lowering") # Eliminate later
                         break
                     }
                 }
             } # Finish condition met
             
-            print(c("low:", low, "n2:", n2, "n1:", n1, "h:", high, "b:", b)) # Eliminate
+            #print(c("low:", low, "n2:", n2, "n1:", n1, "h:", high, "b:", b)) # Eliminate
         } # Finish while loop b
         
-        print(c("b fraction:", b))
+        #print(c("b fraction:", b))
         
         # Break loop
         if (b == b_fract + 1) {

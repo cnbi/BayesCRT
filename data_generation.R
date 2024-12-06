@@ -70,7 +70,7 @@ gen_CRT_data <- function(ndatasets = ndatasets, n1 = n1, n2 = n2, var_u0 = var_u
   var_e_data <- unlist(lapply(output_lmer, get_variances, 2))
   total_var_data <- var_u0_data + var_e_data
   rho_data <- var_u0_data / total_var_data
-  print("Multilevel check")
+  #print("Multilevel check")
 
   rm(id, condition, intervention, control, mean_control, data_list, output_lmer,
      u0, e, resp, batch_size, cov_intervention, cov_control, var_u0_data,
